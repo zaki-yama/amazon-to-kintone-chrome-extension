@@ -1,6 +1,10 @@
 import * as React from 'react';
 import './Popup.scss';
 
+const API_TOKEN = 'YOUR_API_TOKEN';
+const DOMAIN = 'YOUR_DOMAIN';
+const API_ENDPOINT = `https://${DOMAIN}.cybozu.com/k/v1/record.json`;
+
 export default class Popup extends React.Component {
   constructor(props: any) {
     super(props);
@@ -10,6 +14,27 @@ export default class Popup extends React.Component {
     console.log('mount');
     // Example of how to send a message to eventPage.ts.
     chrome.runtime.sendMessage({ popupMounted: true });
+
+    const data = {
+      app: '3',
+      record: {
+        // TODO
+      }
+    };
+    const headers = {
+      'Content-Type': 'application/json',
+      'X-Cybozu-API-Token' : API_TOKEN,
+    };
+    const init = {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers,
+    };
+    fetch(API_ENDPOINT, init)
+      .then(res => res.json())
+      .then(response => console.log("Success:", JSON.stringify(response)))
+      .catch(error => console.error("Error:", error));
+
   }
 
   render() {

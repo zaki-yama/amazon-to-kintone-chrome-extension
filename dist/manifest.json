@@ -23,7 +23,6 @@
     },
 
     "permissions": [
-      "identity",
-      "storage"
+      "https://*.cybozu.com/*"
     ]
 }
