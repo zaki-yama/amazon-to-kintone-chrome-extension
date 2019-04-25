@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Amazon to kintone",
   "description": "Create kintone record from Amazon product page",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "browser_action": {
     "default_icon": "icon16.png",
     "default_popup": "popup.html"
