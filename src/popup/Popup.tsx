@@ -5,16 +5,24 @@ const API_TOKEN = 'YOUR_API_TOKEN';
 const DOMAIN = 'YOUR_DOMAIN';
 const API_ENDPOINT = `https://${DOMAIN}.cybozu.com/k/v1/record.json`;
 
-export default class Popup extends React.Component {
-  constructor(props: any) {
+type Props = {
+  tabId: number;
+};
+
+export default class Popup extends React.Component<Props, {}> {
+  constructor(props: Readonly<Props>) {
     super(props);
   }
 
   componentDidMount() {
-    console.log('mount');
-    // Example of how to send a message to eventPage.ts.
-    chrome.runtime.sendMessage({ popupMounted: true });
-
+    console.log("mount");
+    chrome.tabs.sendMessage(
+      this.props.tabId,
+      { message: "request" },
+      response => {
+        console.log(response);
+      }
+    );
     const data = {
       app: '3',
       record: {

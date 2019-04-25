@@ -4,7 +4,7 @@ module.exports = {
   mode: "development",
   entry: {
     popup: path.join(__dirname, "src/popup/index.tsx"),
-    eventPage: path.join(__dirname, "src/eventPage.ts")
+    contentScript: path.join(__dirname, "src/contentScript.ts")
   },
   devtool: "inline-source-map",
   output: {
