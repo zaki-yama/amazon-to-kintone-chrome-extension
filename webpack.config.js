@@ -4,7 +4,8 @@ module.exports = {
   mode: "development",
   entry: {
     popup: path.join(__dirname, "src/popup/index.tsx"),
-    contentScript: path.join(__dirname, "src/contentScript.ts")
+    contentScript: path.join(__dirname, "src/contentScript.ts"),
+    options: path.join(__dirname, "src/options/index.tsx"),
   },
   devtool: "inline-source-map",
   output: {
