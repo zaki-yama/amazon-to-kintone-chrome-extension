@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React from "react";
+import ReactDOM from "react-dom";
+import { Options } from './Options';
 
-
-ReactDOM.render(<div>hello</div>, document.getElementById("main"));
+ReactDOM.render(<Options />, document.getElementById("main"));
