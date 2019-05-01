@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Form, Input, Button } from 'react-lightning-design-system';
 
 type Form = {
   subdomain?: string;
@@ -22,32 +23,16 @@ export const Options: React.FC = props => {
   };
 
   return (
-    <>
-      <label>
-        Subdomain
-        <input name="subdomain" type="text" onChange={handleChange} value={form.subdomain} />
-      </label>
-      <label>
-        App Id
-        <input name="appId" type="text" onChange={handleChange} value={form.appId} />
-      </label>
-      <label>
-        Api Token
-        <input name="apiToken" type="text" onChange={handleChange} value={form.apiToken} />
-      </label>
-      <label>
-        Field Code for Product Title
-        <input name="titleFieldCode" type="text" onChange={handleChange} value={form.titleFieldCode} />
-      </label>
-      <label>
-        Field Code for Product Url
-        <input name="urlFieldCode" type="text" onChange={handleChange} value={form.urlFieldCode} />
-      </label>
-      <label>
-        Field Code for Product Image Url
-        <input name="imageUrlFieldCode" type="text" onChange={handleChange} value={form.imageUrlFieldCode} />
-      </label>
-      <button onClick={onSave}>Save</button>
-    </>
+    <div className="optionsContainer">
+      <Form className="form">
+        <Input name="subdomain" label="Subdomain" onChange={handleChange} value={form.subdomain} />
+        <Input name="appId" label="App Id" onChange={handleChange} value={form.appId} />
+        <Input name="apiToken" label="Api Token" onChange={handleChange} value={form.apiToken} />
+        <Input name="titleFieldCode" label="Field Code for Product Title" onChange={handleChange} value={form.titleFieldCode} />
+        <Input name="urlFieldCode" label="Field Code for Product Url" onChange={handleChange} value={form.urlFieldCode} />
+        <Input name="imageUrlFieldCode" label="Field Code for Product Image Url" onChange={handleChange} value={form.imageUrlFieldCode} />
+        <Button type="brand" onClick={onSave}>Save</Button>
+      </Form>
+    </div>
   );
 };
