@@ -13,19 +13,30 @@ type Form = {
 
 export const Options: React.FC = props => {
   const [form, setForm] = useState<Form>({});
+  const [showToast, setShowToast] = useState(false);
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const onSave = e => {
-    // TODO
-    console.log(form);
+    chrome.storage.local.set({ options: form }, () => {
+      setShowToast(true);
+    });
   };
 
   return (
     <div className="optionsContainer">
-      <Toast className="toast" level="success" icon="success">Successfully Saved.</Toast>
+      {showToast
+        ? <Toast
+            className="toast"
+            level="success"
+            icon="success"
+            onClose={() => setShowToast(false)}
+          >
+            Successfully Saved.
+          </Toast>
+        : null}
       <div className="slds-text-heading_medium">Options</div>
       <Form className="form">
         <Input name="subdomain" label="Subdomain" onChange={handleChange} value={form.subdomain} />
