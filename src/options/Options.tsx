@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Toast } from 'react-lightning-design-system';
 import './Options.scss';
 
@@ -14,6 +14,12 @@ type Form = {
 export const Options: React.FC = props => {
   const [form, setForm] = useState<Form>({});
   const [showToast, setShowToast] = useState(false);
+
+  useEffect(() => {
+    chrome.storage.local.get("options", data => {
+      setForm(data.options);
+    });
+  }, []);
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
