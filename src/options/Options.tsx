@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Input, Button } from 'react-lightning-design-system';
+import { Form, Input, Button, Toast } from 'react-lightning-design-system';
 import './Options.scss';
 
 type Form = {
@@ -25,6 +25,7 @@ export const Options: React.FC = props => {
 
   return (
     <div className="optionsContainer">
+      <Toast className="toast" level="success" icon="success">Successfully Saved.</Toast>
       <div className="slds-text-heading_medium">Options</div>
       <Form className="form">
         <Input name="subdomain" label="Subdomain" onChange={handleChange} value={form.subdomain} />
