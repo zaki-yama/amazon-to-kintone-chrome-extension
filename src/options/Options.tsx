@@ -11,7 +11,7 @@ type Form = {
   imageUrlFieldCode?: string;
 };
 
-export const Options: React.FC = props => {
+const Options: React.FC = props => {
   const [form, setForm] = useState<Form>({});
   const [showToast, setShowToast] = useState(false);
 
@@ -56,3 +56,5 @@ export const Options: React.FC = props => {
     </div>
   );
 };
+
+export default Options;
