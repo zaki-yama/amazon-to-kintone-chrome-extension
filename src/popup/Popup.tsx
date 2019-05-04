@@ -12,36 +12,34 @@ type Props = {
 const Popup: React.FC<Props> = props => {
   useEffect(() => {
     console.log("mount");
-    chrome.tabs.sendMessage(
-      props.tabId,
-      {},
-      response => {
-        console.log(response);
-        const data = {
-          app: "3",
-          record: {
-            Title: { value: response.title },
-            ImageUrl: { value: response.imageUrl },
-            Link: { value: response.url },
-          }
-        };
+    chrome.tabs.sendMessage(props.tabId, {}, response => {
+      console.log(response);
+      const data = {
+        app: "3",
+        record: {
+          Title: { value: response.title },
+          ImageUrl: { value: response.imageUrl },
+          Link: { value: response.url }
+        }
+      };
 
-        const headers = {
-          'Content-Type': 'application/json',
-          'X-Cybozu-API-Token' : API_TOKEN,
-        };
-        const init = {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers
-        };
-        fetch(API_ENDPOINT, init)
-          .then(res => res.json())
-          .then(response => console.log("Success:", JSON.stringify(response)))
-          .catch(error => console.error("Error:", error));
-        });
-      });
-    return <div className="popupContainer">hello</div>;
+      const headers = {
+        "Content-Type": "application/json",
+        "X-Cybozu-API-Token": API_TOKEN
+      };
+      const init = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers
+      };
+      fetch(API_ENDPOINT, init)
+        .then(res => res.json())
+        .then(response => console.log("Success:", JSON.stringify(response)))
+        .catch(error => console.error("Error:", error));
+    });
+  });
+
+  return <div className="popupContainer">hello</div>;
 };
 
 export default Popup;
