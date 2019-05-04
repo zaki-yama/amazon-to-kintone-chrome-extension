@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect } from "react";
 import "./Popup.scss";
 
 const API_TOKEN = "YOUR_API_TOKEN";
@@ -9,15 +9,11 @@ type Props = {
   tabId: number;
 };
 
-export default class Popup extends React.Component<Props, {}> {
-  constructor(props: Readonly<Props>) {
-    super(props);
-  }
-
-  componentDidMount() {
+const Popup: React.FC<Props> = props => {
+  useEffect(() => {
     console.log("mount");
     chrome.tabs.sendMessage(
-      this.props.tabId,
+      props.tabId,
       {},
       response => {
         console.log(response);
@@ -35,19 +31,17 @@ export default class Popup extends React.Component<Props, {}> {
           'X-Cybozu-API-Token' : API_TOKEN,
         };
         const init = {
-          method: 'POST',
+          method: "POST",
           body: JSON.stringify(data),
-          headers,
+          headers
         };
         fetch(API_ENDPOINT, init)
           .then(res => res.json())
           .then(response => console.log("Success:", JSON.stringify(response)))
           .catch(error => console.error("Error:", error));
-          }
-    );
-  }
-
-  render() {
+        });
+      });
     return <div className="popupContainer">hello</div>;
-  }
-}
+};
+
+export default Popup;
