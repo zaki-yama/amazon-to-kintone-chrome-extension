@@ -17,7 +17,7 @@ export const Card: React.FC<CardProps> = props => {
       </div>
       <footer className="slds-card__footer">
         <Button type="neutral">Cancel</Button>
-        <Button type="brand" autofocus="true">
+        <Button type="brand" autoFocus={true}>
           Save
         </Button>
       </footer>
