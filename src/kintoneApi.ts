@@ -2,7 +2,7 @@ import { Options, ProductInfo } from "./typings";
 
 export function saveToKintone(productInfo: ProductInfo, options: Options) {
   const data = {
-    app: "3",
+    app: options.appId,
     record: {
       [options.titleFieldCode]: { value: productInfo.title },
       [options.urlFieldCode]: { value: productInfo.url },
