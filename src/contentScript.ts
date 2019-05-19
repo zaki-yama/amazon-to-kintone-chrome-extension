@@ -11,7 +11,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   // `productTitle` or `ebooksProductTitle`
   const title = (document.querySelectorAll(
     "[id*=roductTitle]"
-  )[0] as HTMLSpanElement).textContent;
+  )[0] as HTMLSpanElement).textContent.trim();
 
   sendResponse({ url, title, imageUrl });
 });
