@@ -2,7 +2,10 @@ import React from "react";
 import { Button } from "react-lightning-design-system";
 import { ProductInfo } from "../typings";
 
-type CardProps = Partial<ProductInfo>;
+type CardProps = Partial<ProductInfo> & {
+  onClickSave: () => void;
+  onClickCancel: () => void;
+};
 
 export const Card: React.FC<CardProps> = props => {
   return (
@@ -16,8 +19,10 @@ export const Card: React.FC<CardProps> = props => {
         </div>
       </div>
       <footer className="slds-card__footer">
-        <Button type="neutral">Cancel</Button>
-        <Button type="brand" autoFocus={true}>
+        <Button type="neutral" onClick={props.onClickCancel}>
+          Cancel
+        </Button>
+        <Button type="brand" autoFocus={true} onClick={props.onClickSave}>
           Save
         </Button>
       </footer>
