@@ -1,53 +1,56 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import "./Popup.scss";
-
-const API_TOKEN = "YOUR_API_TOKEN";
-const DOMAIN = "YOUR_DOMAIN";
-const API_ENDPOINT = `https://${DOMAIN}.cybozu.com/k/v1/record.json`;
+import { Options, ProductInfo } from "../typings";
+import { Card } from "./Card";
+import { Spinner } from "react-lightning-design-system";
+import { saveRecord } from "../kintoneApi";
 
 type Props = {
   tabId: number;
 };
 
-export default class Popup extends React.Component<Props, {}> {
-  constructor(props: Readonly<Props>) {
-    super(props);
-  }
+const Popup: React.FC<Props> = props => {
+  const [options, setOptions] = useState<Options>({});
+  const [loading, setLoading] = useState(false);
+  const [productInfo, setProductInfo] = useState<ProductInfo>({});
 
-  componentDidMount() {
-    console.log("mount");
-    chrome.tabs.sendMessage(
-      this.props.tabId,
-      {},
-      response => {
-        console.log(response);
-        const data = {
-          app: "3",
-          record: {
-            Title: { value: response.title },
-            ImageUrl: { value: response.imageUrl },
-            Link: { value: response.url },
-          }
-        };
+  useEffect(function loadOptions() {
+    chrome.storage.local.get("options", data => {
+      setOptions(data.options);
+    });
+  }, []);
 
-        const headers = {
-          'Content-Type': 'application/json',
-          'X-Cybozu-API-Token' : API_TOKEN,
-        };
-        const init = {
-          method: 'POST',
-          body: JSON.stringify(data),
-          headers,
-        };
-        fetch(API_ENDPOINT, init)
-          .then(res => res.json())
-          .then(response => console.log("Success:", JSON.stringify(response)))
-          .catch(error => console.error("Error:", error));
-          }
+  useEffect(function extractPageInfo() {
+    chrome.tabs.sendMessage(props.tabId, {}, response => {
+      setProductInfo(response);
+    });
+  }, []);
+
+  const saveToKintone = async (productInfo: ProductInfo, options: Options) => {
+    setLoading(true);
+    await saveRecord(productInfo, options);
+    setLoading(false);
+  };
+
+  let children;
+  if (!options) {
+    children = "Please set options.";
+  } else if (!productInfo) {
+    children = "Getting product info...";
+  } else {
+    children = (
+      <Card
+        {...productInfo}
+        onClickSave={() => saveToKintone(productInfo, options)}
+      />
     );
   }
+  return (
+    <div className="popupContainer">
+      {loading && <Spinner type="brand" size="large" />}
+      {children}
+    </div>
+  );
+};
 
-  render() {
-    return <div className="popupContainer">hello</div>;
-  }
-}
+export default Popup;
