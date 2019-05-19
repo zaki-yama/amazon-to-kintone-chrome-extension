@@ -1,7 +1,7 @@
 export type ProductInfo = {
-  url: string;
-  title: string;
-  imageUrl: string;
+  url?: string;
+  title?: string;
+  imageUrl?: string;
 };
 
 export type Options = {

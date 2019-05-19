@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Popup.scss";
 import { Options, ProductInfo } from "../typings";
 import { Card } from "./Card";
+import { saveToKintone } from "../kintoneApi";
 
 const API_TOKEN = "YOUR_API_TOKEN";
 const DOMAIN = "YOUR_DOMAIN";
@@ -13,7 +14,7 @@ type Props = {
 
 const Popup: React.FC<Props> = props => {
   const [options, setOptions] = useState<Options>({});
-  const [productInfo, setProductInfo] = useState({});
+  const [productInfo, setProductInfo] = useState<ProductInfo>({});
 
   useEffect(function loadOptions() {
     chrome.storage.local.get("options", data => {
@@ -27,37 +28,18 @@ const Popup: React.FC<Props> = props => {
     });
   }, []);
 
-  /*
-      const data = {
-        app: "3",
-        record: {
-          Title: { value: response.title },
-          ImageUrl: { value: response.imageUrl },
-          Link: { value: response.url }
-        }
-      };
-      const headers = {
-        "Content-Type": "application/json",
-        "X-Cybozu-API-Token": API_TOKEN
-      };
-      const init = {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers
-      };
-      fetch(API_ENDPOINT, init)
-        .then(res => res.json())
-        .then(response => console.log("Success:", JSON.stringify(response)))
-        .catch(error => console.error("Error:", error));
-      */
-
   let children;
   if (!options) {
     children = "Please set options.";
   } else if (!productInfo) {
     children = "Getting product info...";
   } else {
-    children = <Card {...productInfo} />;;
+    children = (
+      <Card
+        {...productInfo}
+        onClickSave={() => saveToKintone(productInfo, options)}
+      />
+    );
   }
   return <div className="popupContainer">{children}</div>;
 };

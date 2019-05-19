@@ -4,7 +4,7 @@ import { ProductInfo } from "../typings";
 
 type CardProps = Partial<ProductInfo> & {
   onClickSave: () => void;
-  onClickCancel: () => void;
+  onClickCancel?: () => void; // TODO: Must be required props
 };
 
 export const Card: React.FC<CardProps> = props => {

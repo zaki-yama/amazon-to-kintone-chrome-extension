@@ -1,5 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 
 import { Card } from "./Card";
 
@@ -13,7 +14,11 @@ const productInfo = {
 storiesOf("Card", module).add("default", () => {
   return (
     <div style={{ width: "300px" }}>
-      <Card {...productInfo} />
+      <Card
+        {...productInfo}
+        onClickSave={action("Save")}
+        onClickCancel={action("Cancel")}
+      />
     </div>
   );
 });
