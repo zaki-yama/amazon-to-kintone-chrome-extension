@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Popup.scss";
 import { Options, ProductInfo } from "../typings";
 import { Card } from "./Card";
-import { saveToKintone } from "../kintoneApi";
+import { Spinner } from "react-lightning-design-system";
+import { saveRecord } from "../kintoneApi";
 
 type Props = {
   tabId: number;
@@ -10,6 +11,7 @@ type Props = {
 
 const Popup: React.FC<Props> = props => {
   const [options, setOptions] = useState<Options>({});
+  const [loading, setLoading] = useState(false);
   const [productInfo, setProductInfo] = useState<ProductInfo>({});
 
   useEffect(function loadOptions() {
@@ -24,6 +26,12 @@ const Popup: React.FC<Props> = props => {
     });
   }, []);
 
+  const saveToKintone = async (productInfo: ProductInfo, options: Options) => {
+    setLoading(true);
+    await saveRecord(productInfo, options);
+    setLoading(false);
+  };
+
   let children;
   if (!options) {
     children = "Please set options.";
@@ -37,7 +45,12 @@ const Popup: React.FC<Props> = props => {
       />
     );
   }
-  return <div className="popupContainer">{children}</div>;
+  return (
+    <div className="popupContainer">
+      {loading && <Spinner type="brand" size="large" />}
+      {children}
+    </div>
+  );
 };
 
 export default Popup;

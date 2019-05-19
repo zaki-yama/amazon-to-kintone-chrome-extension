@@ -1,6 +1,6 @@
 import { Options, ProductInfo } from "./typings";
 
-export function saveToKintone(productInfo: ProductInfo, options: Options) {
+export async function saveRecord(productInfo: ProductInfo, options: Options) {
   const data = {
     app: options.appId,
     record: {
@@ -19,8 +19,8 @@ export function saveToKintone(productInfo: ProductInfo, options: Options) {
     headers
   };
   const url = `https://${options.subdomain}.cybozu.com/k/v1/record.json`;
-  fetch(url, init)
-    .then(res => res.json())
-    .then(response => console.log("Success:", JSON.stringify(response)))
-    .catch(error => console.error("Error:", error));
+  const response = await fetch(url, init);
+  const json = await response.json();
+  console.log(json);
+  return json;
 }
