@@ -9,7 +9,7 @@ const Options: React.FC = props => {
 
   useEffect(() => {
     chrome.storage.local.get("options", data => {
-      setForm(data.options);
+      setForm(data.options || {});
     });
   }, []);
 
