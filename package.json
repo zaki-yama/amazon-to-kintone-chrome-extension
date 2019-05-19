@@ -5,17 +5,23 @@
   "scripts": {
     "postinstall": "cp -r node_modules/@salesforce-ux/design-system/assets dist",
     "build": "webpack",
-    "watch": "webpack -w"
+    "watch": "webpack -w",
+    "storybook": "start-storybook -s dist -p 6006",
+    "build-storybook": "build-storybook"
   },
   "author": "Joe Martella",
   "license": "MIT",
   "devDependencies": {
+    "@storybook/addon-actions": "^5.0.11",
+    "@storybook/react": "^5.0.11",
     "@types/chrome": "0.0.83",
     "@types/react": "^16.8.13",
     "@types/react-dom": "^16.8.4",
+    "@types/storybook__react": "^4.0.1",
     "css-loader": "^2.1.1",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
+    "storybook": "^1.0.0",
     "style-loader": "^0.23.1",
     "ts-loader": "^5.3.3",
     "typescript": "^3.4.4",
