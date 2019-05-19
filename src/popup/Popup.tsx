@@ -4,10 +4,6 @@ import { Options, ProductInfo } from "../typings";
 import { Card } from "./Card";
 import { saveToKintone } from "../kintoneApi";
 
-const API_TOKEN = "YOUR_API_TOKEN";
-const DOMAIN = "YOUR_DOMAIN";
-const API_ENDPOINT = `https://${DOMAIN}.cybozu.com/k/v1/record.json`;
-
 type Props = {
   tabId: number;
 };
