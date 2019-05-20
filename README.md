@@ -1,15 +1,21 @@
-Chrome Extension with TypeScript Template
-=========================================
+Amazon to kintone
+=================
 
-This project is a boilerplate project to allow you to quickly build chrome extensions using TypeScript and React.
+![ScreenShot](images/screenshot.png)
 
-## Building
+## Building 
 
 1.  Clone repo
-2.  `npm i`
-3.  `npm run build` to compile once or `npm run watch` to run the build task in watch mode
+2.  `yarn`
+3.  `yarn run build` to compile once or `yarn run watch` to run the build task in watch mode
 
 ## Installation
+
+### 1. From Chrome WebStore
+
+https://chrome.google.com/webstore/detail/amazon-to-kintone/leipfhjipgnfbdjkbinlmlmfdhgcakki
+
+### 2. Install from repository (unpacked extension):
 
 1.  Complete the steps to build the project above
 2.  Go to [_chrome://extensions_](chrome://extensions) in Google Chrome
