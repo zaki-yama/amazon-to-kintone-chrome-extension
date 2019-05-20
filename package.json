@@ -1,7 +1,6 @@
 {
-  "name": "chrome-extension-react-typescript-boilerplate",
+  "name": "Amazon to kintone",
   "version": "1.0.0",
-  "description": "A boilerplate project to quickly build a Chrome extension using TypeScript and React (built using webpack).",
   "scripts": {
     "postinstall": "cp -r node_modules/@salesforce-ux/design-system/assets dist",
     "build": "webpack",
