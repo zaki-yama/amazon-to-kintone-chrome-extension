@@ -14,18 +14,19 @@ const Popup: React.FC<Props> = props => {
   const [loading, setLoading] = useState(false);
   const [productInfo, setProductInfo] = useState<ProductInfo>({});
 
-  useEffect(function loadOptions() {
+  useEffect(() => {
     chrome.storage.local.get("options", data => {
       setOptions(data.options);
     });
   }, []);
 
-  useEffect(function extractPageInfo() {
+  useEffect(() => {
     chrome.tabs.sendMessage(props.tabId, {}, response => {
       setProductInfo(response);
     });
-  }, []);
+  }, [props.tabId]);
 
+  // eslint-disable-next-line no-shadow
   const saveToKintone = async (productInfo: ProductInfo, options: Options) => {
     setLoading(true);
     await saveRecord(productInfo, options);
