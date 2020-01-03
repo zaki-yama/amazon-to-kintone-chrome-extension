@@ -26,6 +26,7 @@ const Popup: React.FC<Props> = props => {
     });
   }, [props.tabId]);
 
+  // eslint-disable-next-line no-shadow
   const saveToKintone = async (productInfo: ProductInfo, options: Options) => {
     setLoading(true);
     await saveRecord(productInfo, options);
