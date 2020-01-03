@@ -22,7 +22,7 @@ export const Card: React.FC<CardProps> = props => {
         <Button type="neutral" onClick={props.onClickCancel}>
           Cancel
         </Button>
-        <Button type="brand" autoFocus={true} onClick={props.onClickSave}>
+        <Button type="brand" autoFocus onClick={props.onClickSave}>
           Save
         </Button>
       </footer>

@@ -14,17 +14,17 @@ const Popup: React.FC<Props> = props => {
   const [loading, setLoading] = useState(false);
   const [productInfo, setProductInfo] = useState<ProductInfo>({});
 
-  useEffect(function loadOptions() {
+  useEffect(() => {
     chrome.storage.local.get("options", data => {
       setOptions(data.options);
     });
   }, []);
 
-  useEffect(function extractPageInfo() {
+  useEffect(() => {
     chrome.tabs.sendMessage(props.tabId, {}, response => {
       setProductInfo(response);
     });
-  }, []);
+  }, [props.tabId]);
 
   const saveToKintone = async (productInfo: ProductInfo, options: Options) => {
     setLoading(true);
