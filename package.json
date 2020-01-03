@@ -1,5 +1,5 @@
 {
-  "name": "Amazon to kintone",
+  "name": "amazon-to-kintone",
   "version": "1.0.0",
   "scripts": {
     "postinstall": "cp -r node_modules/@salesforce-ux/design-system/assets dist",
