@@ -1,7 +1,8 @@
+import { KintoneRestAPIClient } from "@kintone/rest-api-client";
 import { Options, ProductInfo } from "./typings";
 
 export async function saveRecord(productInfo: ProductInfo, options: Options) {
-  const data = {
+  const params = {
     app: options.appId,
     record: {
       [options.titleFieldCode]: { value: productInfo.title },
@@ -9,18 +10,12 @@ export async function saveRecord(productInfo: ProductInfo, options: Options) {
       [options.imageUrlFieldCode]: { value: productInfo.imageUrl }
     }
   };
-  const headers = {
-    "Content-Type": "application/json",
-    "X-Cybozu-API-Token": options.apiToken
-  };
-  const init = {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers
-  };
-  const url = `https://${options.subdomain}.cybozu.com/k/v1/record.json`;
-  const response = await fetch(url, init);
-  const json = await response.json();
-  console.log(json);
-  return json;
+  const client = new KintoneRestAPIClient({
+    host: `https://${options.subdomain}.cybozu.com`,
+    auth: {
+      apiToken: options.apiToken
+    }
+  });
+  const result = await client.record.addRecord(params);
+  return result.id as string;
 }
