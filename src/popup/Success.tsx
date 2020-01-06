@@ -8,7 +8,7 @@ type Props = {
 };
 
 export const Success: React.FC<Props> = ({ appId, recordId, subdomain }) => {
-  const url = `https://${subdomain}.cybozu.com/${appId}/${recordId}`;
+  const url = `https://${subdomain}.cybozu.com/k/${appId}/show#record=${recordId}`;
   return (
     <Grid>
       <Row cols={1} align="center">
