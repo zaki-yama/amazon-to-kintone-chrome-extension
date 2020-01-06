@@ -1,7 +1,7 @@
 Amazon to kintone
 =================
 
-![ScreenShot](images/screenshot.png)
+![ScreenShot](images/screenshot.gif)
 
 ## Building 
 
