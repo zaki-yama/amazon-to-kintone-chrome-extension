@@ -1,13 +1,13 @@
 Amazon to kintone
 =================
 
-![ScreenShot](images/screenshot.png)
+![ScreenShot](images/screenshot.gif)
 
-## Building 
+## Building
 
 1.  Clone repo
-2.  `yarn`
-3.  `yarn run build` to compile once or `yarn run watch` to run the build task in watch mode
+2.  `npm install`
+3.  `npm run build` to compile once or `npm run watch` to run the build task in watch mode
 
 ## Installation
 
