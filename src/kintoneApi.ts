@@ -17,5 +17,5 @@ export async function saveRecord(productInfo: ProductInfo, options: Options) {
     }
   });
   const result = await client.record.addRecord(params);
-  return result.id;
+  return result.id as string;
 }
