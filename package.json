@@ -12,7 +12,7 @@
   "author": "Joe Martella",
   "license": "MIT",
   "devDependencies": {
-    "@cybozu/eslint-config": "9.0.1",
+    "@cybozu/eslint-config": "10.0.0",
     "@storybook/addon-actions": "5.2.8",
     "@storybook/react": "5.2.8",
     "@types/chrome": "0.0.83",
