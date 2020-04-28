@@ -15,7 +15,7 @@
     "@cybozu/eslint-config": "10.0.0",
     "@storybook/addon-actions": "5.2.8",
     "@storybook/react": "5.2.8",
-    "@types/chrome": "0.0.103",
+    "@types/chrome": "0.0.106",
     "@types/react": "16.9.19",
     "@types/react-dom": "16.8.4",
     "babel-loader": "8.0.6",
