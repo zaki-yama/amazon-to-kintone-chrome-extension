@@ -7,14 +7,14 @@ export async function saveRecord(productInfo: ProductInfo, options: Options) {
     record: {
       [options.titleFieldCode]: { value: productInfo.title },
       [options.urlFieldCode]: { value: productInfo.url },
-      [options.imageUrlFieldCode]: { value: productInfo.imageUrl }
-    }
+      [options.imageUrlFieldCode]: { value: productInfo.imageUrl },
+    },
   };
   const client = new KintoneRestAPIClient({
-    host: `https://${options.subdomain}.cybozu.com`,
+    baseUrl: `https://${options.subdomain}.cybozu.com`,
     auth: {
-      apiToken: options.apiToken
-    }
+      apiToken: options.apiToken,
+    },
   });
   const result = await client.record.addRecord(params);
   return result.id as string;
