@@ -9,7 +9,7 @@
     "storybook": "start-storybook -s dist -p 6006",
     "build-storybook": "build-storybook"
   },
-  "author": "Joe Martella",
+  "author": "Shingo Yamazaki <shingoyamazaki00@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@cybozu/eslint-config": "10.0.3",
