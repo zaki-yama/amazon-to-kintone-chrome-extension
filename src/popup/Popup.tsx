@@ -18,14 +18,14 @@ type Status =
   | "SAVE_START"
   | "SAVE_SUCCESS";
 
-const Popup: React.FC<Props> = props => {
+const Popup: React.FC<Props> = (props) => {
   const [status, setStatus] = useState<Status>();
   const [options, setOptions] = useState<Options>({});
   const [productInfo, setProductInfo] = useState<ProductInfo>({});
   const [recordId, setRecordId] = useState("");
 
   useEffect(() => {
-    chrome.storage.local.get("options", data => {
+    chrome.storage.local.get("options", (data) => {
       setOptions(data.options);
       if (!data.options) {
         setStatus("FETCH_OPTION_FAILURE");
@@ -34,7 +34,7 @@ const Popup: React.FC<Props> = props => {
   }, []);
 
   useEffect(() => {
-    chrome.tabs.sendMessage(props.tabId, {}, response => {
+    chrome.tabs.sendMessage(props.tabId, {}, (response) => {
       if (response) {
         setStatus("FETCH_PRODUCT_INFO_SUCCESS");
         setProductInfo(response);

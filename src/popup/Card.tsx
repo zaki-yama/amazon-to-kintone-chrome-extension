@@ -7,7 +7,7 @@ type CardProps = Partial<ProductInfo> & {
   onClickCancel?: () => void; // TODO: Must be required props
 };
 
-export const Card: React.FC<CardProps> = props => {
+export const Card: React.FC<CardProps> = (props) => {
   return (
     <article className="slds-card">
       <div className="slds-card__body slds-card__body_inner">

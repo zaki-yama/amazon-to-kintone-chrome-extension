@@ -3,21 +3,21 @@ import { Form, Input, Button, Toast } from "react-lightning-design-system";
 import "./Options.scss";
 import { Options } from "../typings";
 
-const Options: React.FC = props => {
+const Options: React.FC = (props) => {
   const [form, setForm] = useState<Options>({});
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
-    chrome.storage.local.get("options", data => {
+    chrome.storage.local.get("options", (data) => {
       setForm(data.options || {});
     });
   }, []);
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const onSave = e => {
+  const onSave = (e) => {
     chrome.storage.local.set({ options: form }, () => {
       setShowToast(true);
     });
