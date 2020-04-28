@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Form, Input, Button, Toast } from "react-lightning-design-system";
 import "./Options.scss";
-import { Options } from "../typings";
+import { Options as OptionsType } from "../typings";
 
 const Options: React.FC = (props) => {
-  const [form, setForm] = useState<Options>({});
+  const [form, setForm] = useState<OptionsType>({});
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
