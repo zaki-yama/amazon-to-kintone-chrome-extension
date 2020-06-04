@@ -12,7 +12,7 @@
   "author": "Shingo Yamazaki <shingoyamazaki00@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@cybozu/eslint-config": "10.0.3",
+    "@cybozu/eslint-config": "10.0.4",
     "@storybook/addon-actions": "5.3.18",
     "@storybook/react": "5.3.18",
     "@types/chrome": "0.0.106",
